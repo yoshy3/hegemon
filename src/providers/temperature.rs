@@ -43,9 +43,15 @@ impl StreamProvider for TemperatureStreamProvider {
                     format!("Package {}", package_index),
                     format!("Temperature of CPU package {}", package_index),
                 ))
+            } else if feature_label.to_lowercase().contains("temp1") {
+                package_index += 1;
+                Some((
+                    format!("Package {}", package_index),
+                    format!("Temperature of CPU package {}", package_index),
+                ))
             } else {
                 None
-            };
+            };qq
 
             if let Some((name, description)) = name_description {
                 streams.push(<dyn Stream>::new(
