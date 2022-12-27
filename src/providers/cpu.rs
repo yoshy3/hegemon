@@ -28,7 +28,7 @@ impl StreamProvider for CPUStreamProvider {
 
         let mut load: io::Result<DelayedMeasurement<CPULoad>> = Err(Error::new(ErrorKind::Other, ""));
 
-        streams.push(Stream::new(
+        streams.push(<dyn Stream>::new(
             "CPU",
             "Average utilization of all CPU cores during the past interval",
             move || {
@@ -57,7 +57,7 @@ impl StreamProvider for CPUStreamProvider {
                 for i in 0..cpu.len() {
                     let mut load: io::Result<DelayedMeasurement<Vec<CPULoad>>> = Err(Error::new(ErrorKind::Other, ""));
 
-                    streams.push(Stream::new(
+                    streams.push(<dyn Stream>::new(
                         format!("Core{}", i + 1),
                         format!("Utilization of CPU core {} during the past interval", i + 1),
                         move || {

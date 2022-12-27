@@ -28,7 +28,7 @@ impl StreamProvider for MemoryStreamProvider {
         let mut streams = Vec::new();
 
         if let Ok(memory) = System::new().memory() {
-            streams.push(Stream::new(
+            streams.push(<dyn Stream>::new(
                 "Mem",
                 "Amount of physical memory (RAM) in use",
                 move || {
@@ -48,7 +48,7 @@ impl StreamProvider for MemoryStreamProvider {
 
             let meminfo = memory.platform_memory.meminfo;
             if meminfo.contains_key(SWAP_TOTAL) && meminfo.contains_key(SWAP_FREE) {
-                streams.push(Stream::new(
+                streams.push(<dyn Stream>::new(
                     "Swap",
                     "Amount of swap space in use",
                     move || {

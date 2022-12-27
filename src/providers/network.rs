@@ -31,7 +31,7 @@ impl StreamProvider for BandwidthStreamProvider {
         if let Ok(networks) = platform.networks() {
             for network in networks.values() {
                 let name = network.name.clone();
-                streams.push(Stream::new(
+                streams.push(<dyn Stream>::new(
                     format!("{}Rx", name),
                     format!("Ingress bandwidth on {} during the past interval", network.name),
                     rate_calculator(move || {
@@ -48,7 +48,7 @@ impl StreamProvider for BandwidthStreamProvider {
                     false,
                 ));
                 let name = network.name.clone();
-                streams.push(Stream::new(
+                streams.push(<dyn Stream>::new(
                     format!("{}Tx", name),
                     format!("Egress bandwidth on {} during the past interval", network.name),
                     rate_calculator(move || {

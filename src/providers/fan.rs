@@ -31,7 +31,7 @@ impl StreamProvider for FanStreamProvider {
         for (subfeature, feature_label, chip_name) in subfeatures(SENSORS_FEATURE_FAN, SENSORS_SUBFEATURE_FAN_INPUT) {
             let name = regex.replace_all(&feature_label, "").replace(" ", "");
 
-            streams.push(Stream::new(
+            streams.push(<dyn Stream>::new(
                 format!("{}Fan", name),
                 format!("Fan speed (feature {} on chip {})", feature_label, chip_name),
                 move || subfeature.get_value().ok(),

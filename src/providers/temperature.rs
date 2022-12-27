@@ -48,7 +48,7 @@ impl StreamProvider for TemperatureStreamProvider {
             };
 
             if let Some((name, description)) = name_description {
-                streams.push(Stream::new(
+                streams.push(<dyn Stream>::new(
                     format!("{}Temp", name),
                     format!("{} (feature {} on chip {})", description, feature_label, chip_name),
                     move || subfeature.get_value().ok(),
