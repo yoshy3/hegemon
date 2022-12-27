@@ -51,7 +51,7 @@ impl StreamProvider for TemperatureStreamProvider {
                 ))
             } else {
                 None
-            };qq
+            };
 
             if let Some((name, description)) = name_description {
                 streams.push(<dyn Stream>::new(
